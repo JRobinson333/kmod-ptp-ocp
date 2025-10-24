@@ -4,7 +4,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define KernelPackage/ptp-ocp
   TITLE:=Microchip OCP PTP Clock Support
-  DEPENDS:=+kmod-ptp +kmod-gpio-dev
+  DEPENDS:=+kmod-ptp
   KCONFIG:=CONFIG_PTP_1588_CLOCK_OCP
   FILES:=$(PKG_BUILD_DIR)/ptp_ocp.ko
   AUTOLOAD:=$(call AutoLoad,50,ptp_ocp)
@@ -16,7 +16,7 @@ define KernelPackage/ptp-ocp/description
   Supports hardware timestamping and precise time synchronization.
 endef
 
-MAKE_OPTS+= \
+MAKE_OPTS += \
 	ARCH="$(LINUX_KARCH)" \
 	CROSS_COMPILE="$(TARGET_CROSS)" \
 	SUBDIRS="$(PKG_BUILD_DIR)"
